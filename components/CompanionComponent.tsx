@@ -23,6 +23,7 @@ const CompanionComponent = ({companionId,subject,topic,name,userName,userImage,s
     const [isSpeaking, setIsSpeaking] = useState(false)
     const [isMuted, setIsMuted] = useState(false)
     const lottieRef = useRef<LottieRefCurrentProps>(null)
+    const [messages, setMessages] = useState<SavedMessage[]>([])
 
     useEffect(() => {
     if(lottieRef){
@@ -39,7 +40,12 @@ const CompanionComponent = ({companionId,subject,topic,name,userName,userImage,s
         const onCallStart = ()=> setCallStatus(CallStatus.ACTIVE)
         const onCallStop = ()=> setCallStatus(CallStatus.FINISHED)
 
-        const onMessage= ()=>{}
+        const onMessage= (message: Message)=>{
+            if(message.type === 'transcript' && message.transcriptType === 'final'){
+                const newMessage = {role: message.role,content: message.transcript}
+                setMessages((prev)=>[newMessage, ...prev])
+            }
+        }
 
         const onError = (error : Error)=>console.log('Error',error)
         const onSpeechStart = ()=> setIsSpeaking(true)
@@ -115,7 +121,7 @@ const CompanionComponent = ({companionId,subject,topic,name,userName,userImage,s
                         <p className="font-bold text-2xl">{userName}</p>
                     </div>
 
-                <button className='btn-mic' onClick={toggleMicrophone}>
+                <button className='btn-mic' onClick={toggleMicrophone} disabled={callStatus !== CallStatus.ACTIVE}>
                     <Image src={isMuted? '/icons/mic-off.svg': '/icons/mic-on.svg'}
                            alt="mic"
                            width={36}
@@ -137,13 +143,29 @@ const CompanionComponent = ({companionId,subject,topic,name,userName,userImage,s
                         : 'Start Session'}
                     </button>
                 </div>
-            </section>
-            <section className='transcript'>
-                <div className='transcript-message no-scrollbar'>
-                    MESSAGES
-                </div>
-                <div className='transcript-fade '/>
-            </section>
+            </section><section className="transcript">
+            <div className="transcript-message no-scrollbar">
+                {messages.map((message, index) => {
+                    if(message.role === 'assistant') {
+                        return (
+                            <p key={index} className="max-sm:text-sm">
+                                {
+                                    name
+                                        .split(' ')[0]
+                                        .replace('/[.,]/g, ','')
+                                }: {message.content}
+                            </p>
+                        )
+                    } else {
+                        return <p key={index} className="text-primary max-sm:text-sm">
+                            {userName}: {message.content}
+                        </p>
+                    }
+                })}
+            </div>
+
+            <div className="transcript-fade" />
+        </section>
         </section>
     );
 };
