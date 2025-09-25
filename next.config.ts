@@ -21,7 +21,7 @@ export default withSentryConfig(nextConfig, {
 
  org: "quardlink",
 
- project: "javascript-nextjs",
+ project: "JAVASCRIPT-CONVERSO-7",
 
  // Only print logs for uploading source maps in CI
  silent: !process.env.CI,
