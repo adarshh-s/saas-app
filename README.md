@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Converso 🎙️
+Converso is an **AI-powered SaaS app** where users can create interactive companions for different subjects like **Maths, History, Science, Languages, and Coding**.  
+Each companion can be customized with **voice type** (male/female), **tone** (casual/formal), and **session duration**, enabling engaging, real-time discussions.
 
-## Getting Started
+---
 
-First, run the development server:
+## ✨ Features
+- 🔑 **Authentication** – Secure login with Supabase.
+- 🧑‍🏫 **Subject Companions** – Choose subjects like Maths, History, Science, Languages, Coding, etc.
+- 🎙️ **Custom Voices** – Male/Female voice options with casual or formal tone.
+- ⏱️ **Adjustable Session Time** – Set discussion duration.
+- 💬 **Real-Time Conversations** – Powered by GPT-4 through Vapi.
+- 📡 **Live Transcription** – Deepgram Nova-3 for fast, accurate speech-to-text.
+- 🔊 **Lifelike Voice Output** – 11 Labs integration for natural speech.
+- 💳 **Subscription Plans** – 3 tiers: **Basic, Core, Pro** (Clerk + Stripe billing).
+- 📊 **Monitoring & Debugging** – Error tracking with Sentry.
 
+---
+
+## 🛠️ Tech Stack
+**Frontend:**
+- Next.js
+- Tailwind CSS
+
+**Backend & Services:**
+- Supabase (Auth & DB)
+- Clerk (User management & subscriptions)
+- Stripe (Billing & payments)
+- Sentry (Error tracking)
+
+**AI & Voice:**
+- OpenAI GPT-4 (via Vapi)
+- 11 Labs (Voice generation)
+- Deepgram Nova-3 (Speech-to-text)
+- Vapi (Real-time AI agent orchestration)
+
+---
+
+## 🚀 Getting Started
+
+### Clone Repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+git clone https://github.com/adarshh-s/saas-app.git
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
