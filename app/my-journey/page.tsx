@@ -19,6 +19,7 @@ const Profile = async () => {
     const companion = await getUserCompanion(user.id)
     const sessionHistory =  await getUserSession(user.id)
 
+
     return (
         <main className='min-lg:w-3/4'>
             <section className='flex justify-between items-center gap-4 max-sm:flex-col '>
