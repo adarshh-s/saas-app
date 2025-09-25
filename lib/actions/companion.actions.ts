@@ -48,7 +48,7 @@ export const getCompanion =  async (id : string)=>{
 export const addToSessionHistory = async (comapnionId: string) => {
     const {userId} = await auth()
     const supabase = createSupabaseClient()
-    const {data,error} =await supabase.from('sesssion history')
+    const {data,error} =await supabase.from('session_history')
         .insert({
             comapnionId: comapnionId,
             userId: userId,
@@ -83,4 +83,18 @@ export const getUserSession=  async (userId:string,limit = 10) => {
     if(error) throw new Error(error.message)
 
     return data.map(({companions})=>companions)
+}
+
+
+export const getUserCompanion=  async (userId:string,limit = 10) => {
+    const supabase = createSupabaseClient()
+    const {data,error} = await supabase
+        .from('companions')
+        .select()
+        .eq('author',userId)
+
+
+    if(error) throw new Error(error.message)
+
+    return data;
 }
